@@ -1,0 +1,40 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@model List<InventoryItem>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <td>Id</td>
+            <td>Name</td>
+            <td>Manufacturer</td>
+            <td>Location</td>
+            <td>Lot #</td>
+            <td>Quantity</td>
+            <td>Units</td>
+            <td>Edit</td>
+            <td>Delete</td>
+        </tr>
+        
+    </thead>
+    <tbody>
+        @foreach(InventoryItem i in Model)
+        {
+            <tr>
+                <td>@i.Id</td>
+                <td>@i.Name</td>
+                <td>@i.Manufacturer.Name</td>
+                <td>@i.Location.LocationName</td>
+                <td>@i.Lot</td>
+                <td>@i.Quantity</td>
+                <td>@i.Units</td>
+                <td>@Html.ActionLink("Edit", "Edit", "InventoryItem", new { Id = i.Id })</td>
+                <td>@Html.ActionLink("Delete", "Delete", "InventoryItem", new { Id = i.Id })</td>
+            </tr>
+        }
+    </tbody>
+</table>

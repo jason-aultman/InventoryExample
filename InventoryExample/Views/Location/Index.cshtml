@@ -1,0 +1,28 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model List<Location>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <td>@Html.DisplayNameFor(c=>c[0].Id)</td>
+            <td>@Html.DisplayNameFor(c=>c[0].LocationName)</td>
+            <td>Edit</td>
+            <td>Delete</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(Location l in Model)
+        {
+        <tr>
+            <td>@l.Id</td>
+            <td>@l.LocationName</td>
+            <td>@Html.ActionLink("Edit", "Edit","Location", new { Id= l.Id })</td>
+            <td>@Html.ActionLink("Delete", "Delete", "Location", new  {Id = l.Id })</td>
+        </tr>        }
+    </tbody>
+</table>
+@Html.ActionLink("Add New", "Edit", "Location", new { Id=0 })

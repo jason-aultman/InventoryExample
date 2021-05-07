@@ -1,0 +1,24 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@model InventoryExample.ViewModels.InventoryEditViewModel
+
+<form class="form-group" asp-action="Edited">
+    <label for="Name">Name</label>
+    <input class="form-control" name="Name" asp-for="@Model.InventoryItem.Name" />
+    <label for="Lot">Lot Number</label>
+    <input class="form-control" name="Lot" asp-for="@Model.InventoryItem.Lot" />
+    <label for="Quantity">Quantity</label>
+    <input class="form-control" name="Quantity" asp-for="@Model.InventoryItem.Quantity" />
+    <label for="Units">Units</label>
+    <input class="form-control" name="Units" asp-for="@Model.InventoryItem.Units" />
+    <input type="hidden" name="Id" asp-for="@Model.InventoryItem.Id" />
+    <label for="ManufacturerSelected">Manufacturer</label>
+    @Html.DropDownListFor(c => c.ManufacturerSelectedId, new SelectList(Model.Manufacturers, "Id", "Name",Model.ManufacturerSelectedId), "Select Manufacturer", new { @class = "form-control" })
+    <label for="LocationSelected">Location</label>
+    @Html.DropDownListFor(c => c.LocationSelectedId, new SelectList(Model.Locations, "Id", "LocationName", Model.LocationSelectedId), "Select Location", new { @class = "form-control" })
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
