@@ -1,0 +1,38 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model Manufacturer
+
+<h3>
+    Name: @Model.Name
+
+</h3>
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <td>
+                Items on hand
+            </td>
+            <td>
+                Location
+            </td>
+            <td>
+                Lot #
+            </td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (InventoryItem i in Model.InventoryItems)
+        {
+            <tr>
+                <td>@i.Name</td>
+                <td>@i.Location.LocationName</td>
+                <td>@i.Lot</td>
+            </tr>
+        }
+
+        </tbody>
+</table>
+

@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using InventoryExample.Data;
 using InventoryExample.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace InventoryExample.Controllers
 {
@@ -57,6 +58,13 @@ namespace InventoryExample.Controllers
                 _context.SaveChanges();
             }
             return RedirectToAction("Index");
+        }
+        public IActionResult Details(int Id)
+        {
+            var manufacturer = _context.Manufacturers.Where(m => m.Id == Id).Include(m => m.InventoryItems).SingleOrDefault();
+            var items = _context.InventoryItems.Where(i => i.Manufacturer.Id == manufacturer.Id).Include(l=>l.Location).ToList();
+            manufacturer.InventoryItems = items;
+            return View(manufacturer);
         }
     }
 }

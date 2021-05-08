@@ -26,18 +26,23 @@ namespace InventoryExample.Controllers
         public IActionResult Edit(int Id)
         {
             InventoryEditViewModel inventoryEditViewModel = new InventoryEditViewModel();
-            if(Id==0)
+            if (Id == 0)
             {
                 inventoryEditViewModel.InventoryItem = new Models.InventoryItem();
+                inventoryEditViewModel.LocationSelectedId = 0;
+                inventoryEditViewModel.ManufacturerSelectedId = 0;
+                inventoryEditViewModel.Locations = _context.Locations.ToList();
+                inventoryEditViewModel.Manufacturers = _context.Manufacturers.ToList();
+
             }
             else
             {
-            inventoryEditViewModel.InventoryItem = _context.InventoryItems.Where(c => c.Id == Id).Single();
+                inventoryEditViewModel.InventoryItem = _context.InventoryItems.Where(c => c.Id == Id).Single();
+                inventoryEditViewModel.Locations = _context.Locations.ToList();
+                inventoryEditViewModel.Manufacturers = _context.Manufacturers.ToList();
+                inventoryEditViewModel.LocationSelectedId = inventoryEditViewModel.InventoryItem.LocationId;
+                inventoryEditViewModel.ManufacturerSelectedId = inventoryEditViewModel.InventoryItem.Manufacturer.Id;
             }
-            inventoryEditViewModel.Locations = _context.Locations.ToList();
-            inventoryEditViewModel.Manufacturers = _context.Manufacturers.ToList();
-            inventoryEditViewModel.LocationSelectedId = inventoryEditViewModel.InventoryItem.LocationId;
-            inventoryEditViewModel.ManufacturerSelectedId = inventoryEditViewModel.InventoryItem.Manufacturer.Id;
             return View(inventoryEditViewModel);
         }
         public IActionResult Edited(int Id, string Name, string Lot, int LocationSelectedId, int ManufacturerSelectedId, double Quantity, string Units )
