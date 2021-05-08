@@ -1,0 +1,38 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model IEnumerable<InventoryItem> 
+
+<table class="table table-bordered table-striped">
+    <thead class="table-dark">
+        <tr>
+            <td>Item Name</td>
+            <td>Item Location</td>
+            <td>Item Quantity</td>
+            <td>Item Units</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(InventoryItem i in Model)
+        {
+            <tr>
+                <td>@i.Name</td>
+                <td>@i.Location.LocationName</td>
+                <td>@i.Quantity</td>
+                <td>@i.Units</td>
+            </tr>
+        }
+       
+
+    </tbody>
+    <tfoot class="table-light">
+        <tr>
+            <td>Total</td>
+            <td></td>
+            <td style="font-weight: bold">@Model.Sum(i => i.Quantity)</td>
+            <td></td>
+        </tr>
+    </tfoot>
+</table>

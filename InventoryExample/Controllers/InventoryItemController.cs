@@ -87,5 +87,11 @@ namespace InventoryExample.Controllers
             }
             return RedirectToAction("Index");
         }
+        public IActionResult Details(string Name)
+        {
+            var items = _context.InventoryItems.Include(i=>i.Location).Where(i => i.Name == Name).ToList();
+            items = items.OrderBy(i => i.Location.LocationName).ToList();
+            return View(items);
+        }
     }
 }
