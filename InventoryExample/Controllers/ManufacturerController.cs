@@ -36,9 +36,17 @@ namespace InventoryExample.Controllers
         }
         public async Task<IActionResult> Edited(Manufacturer manufacturer)
         {
-            _context.Add(manufacturer);
-             await _context.SaveChangesAsync();
-             return RedirectToAction("Index");
+            if (manufacturer.Id == 0)
+            {
+                _context.Add(manufacturer);
+                await _context.SaveChangesAsync();
+            }
+            else
+            {
+                _context.Update(manufacturer);
+                await _context.SaveChangesAsync();
+            }
+            return RedirectToAction("Index");
         }
         public IActionResult Delete(int Id)
         {
@@ -46,7 +54,7 @@ namespace InventoryExample.Controllers
             if(removeManufacturer!=null)
             {
                 _context.Manufacturers.Remove(removeManufacturer);
-                _context.SaveChangesAsync();
+                _context.SaveChanges();
             }
             return RedirectToAction("Index");
         }

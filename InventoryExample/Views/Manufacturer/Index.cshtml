@@ -3,13 +3,19 @@
 *@
 @{
 }
-@model List<Manufacturer>
+@model IEnumerable<Manufacturer>
 
 <table class="table table-bordered">
     <thead>
         <tr>
             <td>Id</td>
-            <td>@Html.DisplayNameFor(c=>c[0].Name)</td>
+            <td>@Html.DisplayNameFor(c=>c.Name)</td>
+            <td>@Html.DisplayNameFor(c=>c.StreetAddress)</td>
+            <td>@Html.DisplayNameFor(c=>c.City)</td>
+            <td>@Html.DisplayNameFor(c=>c.State)</td>
+            <td>@Html.DisplayNameFor(c=>c.Zip)</td>
+            <td>@Html.DisplayNameFor(c=>c.Phone)</td>
+            <td>@Html.DisplayNameFor(c=>c.Contact)</td>
             <td>Edit</td>
             <td>Delete</td>
         </tr>
@@ -17,12 +23,19 @@
     <tbody>
         @foreach(Manufacturer m in Model)
         {
-            <tr>
-                <td>@m.Id</td>
-                <td>@m.Name</td>
-                <td>@Html.ActionLink("Edit","Edit","Manufacturer", new { Id=m.Id })</td>
-                <td>@Html.ActionLink("Delete", "Delete", "Manufacturer", new { Id = m.Id })</td>
-            </tr>
+        <tr>
+            <td>@m.Id</td>
+            <td>@Html.ActionLink(m.Name, "Details", "Manufacturer", new { Id=m.Id })</td>
+            <td>@m.StreetAddress</td>
+            <td>@m.City</td>
+            <td>@m.State</td>
+            <td>@m.Zip</td>
+            <td>@m.Phone</td>
+            <td>@m.Contact</td>
+
+            <td>@Html.ActionLink("Edit", "Edit", "Manufacturer", new { Id = m.Id })</td>
+            <td>@Html.ActionLink("Delete", "Delete", "Manufacturer", new { Id = m.Id })</td>
+        </tr>
         }
     </tbody>
 </table>  

@@ -6,7 +6,28 @@
 @model Manufacturer
 
 <form asp-action="Edited" class="form-group">
+    <input type="hidden" asp-for="@Model.Id" name="Id" />
     <label for="Name">Name</label>
     <input class="form-control" name="Name" asp-for="@Model.Name" />
+
+    <label for="StreetAddress">Street Address</label>
+    <input class="form-control" name="StreetAddress" asp-for="@Model.StreetAddress" />
+
+    <label for="City">City</label>
+    <input class="form-control" name="City" asp-for="@Model.City" />
+
+    <label for="State">State</label>
+    <input class="form-control" name="State" asp-for="@Model.State" />
+
+    <label for="Zip">Zip</label>
+    <input class="form-control" name="Zip" asp-for="@Model.Zip" />
+
+    <label for="Contact">Contact Name</label>
+    <input class="form-control" name="Contact" asp-for="@Model.Contact" />
+
+    <label for="Phone">Phone #</label>
+    <input class="form-control" type="tel" name="Phone" asp-for="@Model.Phone" />
+
+
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>
