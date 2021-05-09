@@ -1,0 +1,35 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model List<InventoryItem>
+
+<h3>Products in location:    </h3>
+<table class="table table-bordered table-striped">
+    <thead class="table-dark">
+        <tr>
+            <td>Product Name</td>
+            <td>Lot #</td>
+            <td>Quantity</td>
+            <td>Units</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(InventoryItem i in Model)
+        {
+            <tr>
+                <td>@i.Name</td>
+                <td>@i.Lot</td>
+                <td>@i.Quantity</td>
+                <td>@i.Units</td>
+            </tr>
+        }
+        <tr>
+            <td></td>
+            <td>Total</td>
+            <td>@Model.Sum(i=>i.Quantity)</td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>

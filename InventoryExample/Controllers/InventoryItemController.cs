@@ -53,10 +53,10 @@ namespace InventoryExample.Controllers
                 inventoryItem = _context.InventoryItems.Where(i => i.Id == Id).SingleOrDefault();
                 
             }
-                inventoryItem.Name = Name;
-                inventoryItem.Lot = Lot;
+                inventoryItem.Name = Name.ToUpper();
+                inventoryItem.Lot = Lot.ToUpper();
                 inventoryItem.Quantity = Quantity;
-                inventoryItem.Units = Units;
+                inventoryItem.Units = Units.ToUpper();
                 inventoryItem.Location = _context.Locations.Where(c => c.Id == LocationSelectedId).SingleOrDefault();
                 inventoryItem.Manufacturer = _context.Manufacturers.Where(c => c.Id == ManufacturerSelectedId).SingleOrDefault();
 

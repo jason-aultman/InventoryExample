@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using InventoryExample.Data;
 using InventoryExample.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace InventoryExample.Controllers
 {
@@ -35,7 +36,14 @@ namespace InventoryExample.Controllers
         }
         public async Task<IActionResult> Edited(Location location)
         {
-            _context.Add(location);
+            location.LocationName = location.LocationName.ToUpper();
+            if(location.Id!=0)
+            {
+                _context.Update(location);
+            }else
+            {
+                _context.Add(location);
+            }
             await _context.SaveChangesAsync();
             return RedirectToAction("Index");
         }
@@ -44,6 +52,11 @@ namespace InventoryExample.Controllers
             _context.Remove(_context.Locations.Where(c => c.Id == Id).Single());
             _context.SaveChanges();
             return RedirectToAction("Index");
+        }
+        public IActionResult Details(int Id)
+        {
+            var productsListedByLocation = _context.InventoryItems.Where(i => i.Location.Id == Id).Include(i => i.Location).ToList();
+            return View(productsListedByLocation);
         }
     }
 }

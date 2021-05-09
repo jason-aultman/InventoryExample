@@ -28,7 +28,7 @@
                 <td>@i.Id</td>
                 <td>@Html.ActionLink(i.Name, "Details", "InventoryItem", new { Name = i.Name})</td>
                 <td>@i.Manufacturer.Name</td>
-                <td>@i.Location.LocationName</td>
+                <td>@Html.ActionLink(i.Location.LocationName, "Details", "Location", new { Id = i.Location.Id })</td>
                 <td>@i.Lot</td>
                 <td>@i.Quantity</td>
                 <td>@i.Units</td>

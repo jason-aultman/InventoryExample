@@ -8,5 +8,6 @@
 <form asp-action="Edited" class="form-group">
     <label for="LocationName">Location Name</label>
     <input class="form-control" name="LocationName" asp-for="@Model.LocationName" />
+    <input type="hidden" name="Id" asp-for="@Model.Id" />
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>
